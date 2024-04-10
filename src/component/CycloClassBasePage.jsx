@@ -12,6 +12,22 @@ class CycloClassBasePage extends React.Component {
     };
   }
 
+  handleAddStudent = () => {
+    this.setState((prevState) => {
+      return {
+        studentCount: prevState.studentCount + 1,
+      };
+    });
+  };
+
+  handleRemoveAllStudent = () => {
+    this.setState((prevState) => {
+      return {
+        studentCount: 0,
+      };
+    });
+  };
+
   componentDidMount = async () => {
     console.log("CycloClassBasePage componentDidMount");
     const response = await getRandomUser();
@@ -64,9 +80,19 @@ class CycloClassBasePage extends React.Component {
           <span className="h4 text-success">Students</span>
           <br />
           <div>Student Count : {this.state.studentCount}</div>
-          <button className="btn btn-success btn-sm">Add Student</button>
+          <button
+            className="btn btn-success btn-sm"
+            onClick={this.handleAddStudent}
+          >
+            Add Student
+          </button>
           &nbsp;
-          <button className="btn btn-danger btn-sm">Remove Student</button>
+          <button
+            className="btn btn-danger btn-sm"
+            onClick={this.handleRemoveAllStudent}
+          >
+            Remove All Students
+          </button>
         </div>
       </div>
     );
